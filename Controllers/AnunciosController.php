@@ -10,11 +10,6 @@
     {
         public function index()
         {
-            if (empty($_SESSION['login'])) {
-                header('Location: /login');
-                exit;
-            }
-        
             $anuncio = new Anuncio;
             $anuncios = $anuncio->obterMeusAnuncios();
 
@@ -27,11 +22,6 @@
 
         public function adicionar()
         {
-            if (empty($_SESSION['login'])) {
-                header('Location: /login');
-                exit;
-            }
-        
             $anuncio = new Anuncio;
             $sucesso = false;
             

@@ -1,4 +1,5 @@
-const host = 'http://10.0.0.104:8080'
+//const host = 'http://10.0.0.104:8080'
+const host = 'http://localhost:8080'
 const myStorage = localStorage
 
 class Store {
@@ -26,6 +27,31 @@ class Store {
     }
 }
 
+class Category {
+    constructor() {
+        this.categories
+    }
+
+    getCategories() {
+        $.ajax({
+            url: `${host}/categories`,
+            dataType: 'json',
+            success: data => {
+                this.fillComboBox(data.categories)
+            }
+        })
+    }
+
+    fillComboBox(categories) {
+        categories.forEach(category => {
+            const option = $('<option>')
+            $(option).attr('value', category.id)
+            $(option).html(category.name)
+            $('#category').append(option)
+        })
+    }
+}
+
 function logged() {
     if (!myStorage.getItem('gwt')) {
         const jwt = myStorage.getItem('jwt')
@@ -46,6 +72,9 @@ $(() => {
     }
     if (window.location.pathname == '/login') {
         login()
+    }
+    if (window.location.pathname == '/anuncios/adicionar') {
+        addProduct()
     }
     if (window.location.pathname == '/login') {
 
@@ -127,4 +156,11 @@ function login() {
             }
         })
     })
+}
+
+function addProduct() {
+    const category = new Category()
+    category.getCategories()
+    /* const categories = category.getCategories()
+    console.log(categories); */
 }

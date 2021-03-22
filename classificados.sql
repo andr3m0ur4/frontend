@@ -21,7 +21,7 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `classificados`
 --
-CREATE DATABASE IF NOT EXISTS `classificados` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+CREATE DATABASE IF NOT EXISTS `classificados` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `classificados`;
 
 -- --------------------------------------------------------
@@ -38,7 +38,7 @@ CREATE TABLE `anuncios` (
   `descricao` text,
   `valor` decimal(8,2) DEFAULT NULL,
   `estado` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Despejando dados para a tabela `anuncios`
@@ -58,7 +58,7 @@ CREATE TABLE `anuncios_imagens` (
   `id` int NOT NULL,
   `id_anuncio` int DEFAULT NULL,
   `url` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Despejando dados para a tabela `anuncios_imagens`
@@ -77,7 +77,7 @@ INSERT INTO `anuncios_imagens` (`id`, `id_anuncio`, `url`) VALUES
 CREATE TABLE `categorias` (
   `id` int NOT NULL,
   `nome` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Despejando dados para a tabela `categorias`
@@ -102,7 +102,7 @@ CREATE TABLE `usuarios` (
   `email` varchar(45) NOT NULL,
   `senha` varchar(32) NOT NULL,
   `telefone` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Despejando dados para a tabela `usuarios`

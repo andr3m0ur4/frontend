@@ -161,6 +161,30 @@ function login() {
 function addProduct() {
     const category = new Category()
     category.getCategories()
-    /* const categories = category.getCategories()
-    console.log(categories); */
+
+    $('form').submit(e => {
+        e.preventDefault()
+
+        const form = e.target
+        const data = new FormData(form)
+        const jwt = myStorage.getItem('jwt')
+        
+        $.ajax({
+            url: `${host}/products/new`,
+            type: 'POST',
+            data,
+            headers: { jwt },
+            processData: false,
+            contentType: false,
+            success: data => {
+                if (!data.error) {
+                    $('#success').removeClass('d-none')
+                    form.reset()
+                } else {
+                    $('#error').html(data.error)
+                    $('#error').removeClass('d-none')
+                }
+            }
+        })
+    })
 }

@@ -1,4 +1,4 @@
-<main class="container mt-3">
+<main class="container my-4">
     <h1>Cadastre-se</h1>
 
     <div class="alert alert-warning d-none" id="error"></div>

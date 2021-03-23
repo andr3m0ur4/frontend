@@ -1,39 +1,36 @@
 <main class="container my-4">
     <h1>Meus Anúncios - Adicionar Anúncio</h1>
 
-    <?php if ($sucesso) : ?>
-        <div class="alert alert-success">
-            Produto adicionado com sucesso!
-        </div>
-    <?php endif ?>
+    <div class="alert alert-success d-none" id="success">
+        Produto adicionado com sucesso!
+    </div>
+    <div class="alert alert-warning d-none" id="error"></div>
 
     <form method="POST" enctype="multipart/form-data">
 
         <div class="form-group">
             <label for="category">Categoria:</label>
-            <select name="category" id="category" class="form-control"></select>
+            <select name="id_category" id="category" class="form-control"></select>
         </div>
         <div class="form-group">
-            <label for="titulo">Título:</label>
-            <input type="text" name="titulo" id="titulo" class="form-control">
+            <label for="name">Nome:</label>
+            <input type="text" name="name" id="name" class="form-control" required>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="price">Valor:</label>
+                <input type="text" name="price" id="price" class="form-control" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="availability">Disponibilidade em Estoque:</label>
+                <input type="number" name="availability" id="availability" class="form-control" required>
+            </div>
         </div>
         <div class="form-group">
-            <label for="valor">Valor:</label>
-            <input type="text" name="valor" id="valor" class="form-control">
+            <label for="description">Descrição:</label>
+            <textarea name="description" id="description" class="form-control"></textarea>
         </div>
-        <div class="form-group">
-            <label for="descricao">Descrição:</label>
-            <textarea name="descricao" id="descricao" class="form-control"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="estado">Estado de Conservação:</label>
-            <select name="estado" id="estado" class="form-control">
-                <option value="0">Ruim</option>
-                <option value="1">Bom</option>
-                <option value="2">Ótimo</option>
-            </select>
-        </div>
+        
         <button class="btn btn-outline-dark">Adicionar</button>
-
     </form>
 </main>

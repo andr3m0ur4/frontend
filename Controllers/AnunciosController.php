@@ -22,29 +22,7 @@
 
         public function adicionar()
         {
-            $anuncio = new Anuncio;
-            $sucesso = false;
-            
-            if (isset($_POST['titulo']) && !empty($_POST['titulo'])) {
-                $titulo = addslashes($_POST['titulo']);
-                $categoria = addslashes($_POST['categoria']);
-                $valor = doubleval(str_replace(',', '.', addslashes($_POST['valor'])));
-                $descricao = addslashes($_POST['descricao']);
-                $estado = addslashes($_POST['estado']);
-        
-                $anuncio->adicionarAnuncio($titulo, $categoria, $valor, $descricao, $estado);
-                $sucesso = true;
-            }
-        
-            $categoria = new Categoria;
-            $categorias = $categoria->obterLista();
-
-            $dados = [
-                'sucesso' => $sucesso,
-                'categorias' => $categorias
-            ];
-
-            $this->loadTemplate('adicionar', $dados);
+            $this->loadTemplate('adicionar');
         }
 
         public function editar($id)

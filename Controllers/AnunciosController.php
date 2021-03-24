@@ -10,11 +10,8 @@
     {
         public function index()
         {
-            $anuncio = new Anuncio;
-            $anuncios = $anuncio->obterMeusAnuncios();
-
             $dados = [
-                'anuncios' => $anuncios
+                'anuncios' => []
             ];
 
             $this->loadTemplate('anuncios', $dados);

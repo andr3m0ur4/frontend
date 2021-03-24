@@ -2,6 +2,10 @@
 const host = 'http://localhost:8080'
 const myStorage = localStorage
 
+if (!myStorage.getItem('gwt')) {
+    const jwt = myStorage.getItem('jwt')
+}
+
 class Store {
     constructor(jwt) {
         this.jwt = jwt
@@ -24,6 +28,28 @@ class Store {
                 }
             }
         })
+    }
+}
+
+class Product {
+    constructor() {
+        this.jwt = isLogged()
+    }
+
+    getMyList() {
+        $.ajax({
+            url: `${host}/products/my-list`,
+            headers: {
+                jwt: this.jwt
+            },
+            success: data => {
+                return data
+            }
+        }).then(data => data.data.forEach(product => {
+            console.log(product);
+            const tr = new TableRow(product)
+            $('tbody').append(tr.fillTr())
+        }))
     }
 }
 
@@ -52,38 +78,110 @@ class Category {
     }
 }
 
-function logged() {
+class TableRow {
+    constructor(product) {
+        this.id = product.id
+        this.name = product.name
+        this.description = product.description
+        this.price = product.price
+        this.availability = product.availability
+        this.picture = product.picture
+        this.id_category = product.id_category
+        this.id_store = product.id_store
+    }
+    createTr() {
+        const tr = $('<tr>')
+        return tr
+    }
+
+    createTd() {
+        const td = $('<td>')
+        return td
+    }
+
+    createImg(picture) {
+        const img = $('<img>')
+        if (!picture) {
+            $(img).attr('src', '/assets/images/default.jpg')
+        } else {
+            $(img).attr('src', `/assets/images/anuncios/${picture}`)
+        }
+        $(img).attr({
+            height: "75",
+            alt: "Foto Anúncio"
+        })
+        return img
+    }
+
+    edit() {
+        const a = $('<a>')
+        $(a).attr('href', `/anuncios/editar/${this.id}`)
+        $(a).addClass('btn btn-primary')
+        $(a).html('Editar')
+        return a
+    }
+
+    delete() {
+        const a = $('<a>')
+        $(a).attr('href', `/anuncios/excluir/${this.id}`)
+        $(a).addClass('btn btn-danger')
+        $(a).html('Excluir')
+        return a
+    }
+
+    fillTr() {
+        const tr = $('<tr>')
+        $(tr).append($('<td>').append(this.createImg(this.picture)))
+        $(tr).append($('<td>').html(this.name))
+        $(tr).append($('<td>').html(`R$ ${this.price}`))
+        $(tr).append($('<td>').append(this.edit(), this.delete()))
+        return tr
+    }
+}
+
+function isLogged() {
     if (!myStorage.getItem('gwt')) {
         const jwt = myStorage.getItem('jwt')
-        const store = new Store(jwt)
-        store.getStore()
+        return jwt
     }
+}
+
+function logout(e) {
+    e.preventDefault()
+    myStorage.removeItem('jwt')
+    window.location.href = '/'
 }
 
 $(() => {
 
-    logged()
+    const jwt = isLogged()
+    const store = new Store(jwt)
+    store.getStore()
 
-    if (window.location.pathname == '/') {
-        home()
-    }
-    if (window.location.pathname == '/cadastrar') {
-        register()
-    }
-    if (window.location.pathname == '/login') {
-        login()
-    }
-    if (window.location.pathname == '/anuncios/adicionar') {
-        addProduct()
-    }
-    if (window.location.pathname == '/login') {
+    $('#logout').click(logout)
 
-        if ($('#sucesso').length > 0) {
-            window.location.href = '/'
-        }
-        
-    }
+    switch (window.location.pathname) {
+        case '/': 
+            home()
+            break;
 
+        case '/cadastrar':
+            register()
+            break
+
+        case '/login':
+            login()
+            break
+
+        case '/anuncios':
+            myProducts()
+
+        case '/anuncios/adicionar':
+            addProduct()
+            break
+
+    }
+    
 })
 
 function home() {
@@ -158,6 +256,11 @@ function login() {
     })
 }
 
+function myProducts() {
+    const product = new Product()
+    product.getMyList()
+}
+
 function addProduct() {
     const category = new Category()
     category.getCategories()
@@ -167,7 +270,7 @@ function addProduct() {
 
         const form = e.target
         const data = new FormData(form)
-        const jwt = myStorage.getItem('jwt')
+        const jwt = isLogged()
         
         $.ajax({
             url: `${host}/products/new`,

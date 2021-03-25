@@ -51,6 +51,20 @@ class Product {
             $('tbody').append(tr.fillTr())
         }))
     }
+
+    getProduct() {
+        const id = location.pathname.split('/')[location.pathname.split('/').length - 1]
+
+        $.ajax({
+            url: `${host}/products/${id}`,
+            headers: {
+                jwt: this.jwt
+            },
+            success: data => {
+                return data
+            }
+        }).then(data => data.data)
+    }
 }
 
 class Category {
@@ -88,15 +102,6 @@ class TableRow {
         this.picture = product.picture
         this.id_category = product.id_category
         this.id_store = product.id_store
-    }
-    createTr() {
-        const tr = $('<tr>')
-        return tr
-    }
-
-    createTd() {
-        const td = $('<td>')
-        return td
     }
 
     createImg(picture) {
@@ -179,7 +184,10 @@ $(() => {
         case '/anuncios/adicionar':
             addProduct()
             break
+    }
 
+    if (window.location.pathname.slice(0, 16) == '/anuncios/editar') {
+        editProduct()
     }
     
 })
@@ -290,4 +298,12 @@ function addProduct() {
             }
         })
     })
+}
+
+function editProduct() {
+    const category = new Category()
+    category.getCategories()
+
+    const product = new Product()
+    product.getProduct()
 }

@@ -10,14 +10,8 @@
     <form method="POST" enctype="multipart/form-data">
 
         <div class="form-group">
-            <label for="categoria">Categoria:</label>
-            <select name="categoria" id="categoria" class="form-control">
-                <?php foreach ($categorias as $categoria) : ?>
-                    <option value="<?= $categoria->id ?>" <?= $dado->id_categoria == $categoria->id ? 'selected' : '' ?>>
-                        <?= $categoria->nome ?>
-                    </option>
-                <?php endforeach ?>
-            </select>
+            <label for="category">Categoria:</label>
+            <select name="category" id="category" class="form-control"></select>
         </div>
         <div class="form-group">
             <label for="titulo">Título:</label>

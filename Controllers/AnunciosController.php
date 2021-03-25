@@ -24,11 +24,6 @@
 
         public function editar($id)
         {
-            if (empty($_SESSION['login'])) {
-                header('Location: /login');
-                exit;
-            }
-        
             $anuncio = new Anuncio;
             $sucesso = false;
         

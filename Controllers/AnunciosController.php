@@ -24,14 +24,6 @@
 
         public function editar($id)
         {
-            $anuncio = new Anuncio;
-            $sucesso = false;
-        
-            if (empty($id)) {
-                header('Location: /anuncios');
-                exit;
-            }
-            
             if (isset($_POST['titulo']) && !empty($_POST['titulo'])) {
                 $titulo = addslashes($_POST['titulo']);
                 $categoria = addslashes($_POST['categoria']);
@@ -47,19 +39,7 @@
                 $anuncio->editarAnuncio($titulo, $categoria, $valor, $descricao, $estado, $fotos, $id);
                 $sucesso = true;
             }
-        
-            $dado = $anuncio->obterAnuncio($id);
-        
-            $categoria = new Categoria;
-            $categorias = $categoria->obterLista();
-
-            $dados = [
-                'sucesso' => $sucesso,
-                'categorias' => $categorias,
-                'dado' => $dado
-            ];
-
-            $this->loadTemplate('editar', $dados);
+            $this->loadTemplate('editar');
         }
 
         public function excluir($id)

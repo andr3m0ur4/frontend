@@ -52,9 +52,7 @@ class Product {
         }))
     }
 
-    getProduct() {
-        const id = location.pathname.split('/')[location.pathname.split('/').length - 1]
-
+    getProduct(id) {
         $.ajax({
             url: `${host}/products/${id}`,
             headers: {
@@ -63,7 +61,10 @@ class Product {
             success: data => {
                 return data
             }
-        }).then(data => data.data)
+        }).then(data => {
+            const form = new Form(data.data)
+            form.fillField()
+        })
     }
 }
 
@@ -89,6 +90,20 @@ class Category {
             $(option).html(category.name)
             $('#category').append(option)
         })
+    }
+}
+
+class Form {
+    constructor(data = {}) {
+        this.product = data
+    }
+
+    fillField() {
+        $('#category').val(this.product.id_category).change()
+        $('#name').val(this.product.name)
+        $('#price').val(this.product.price)
+        $('#availability').val(this.product.availability)
+        $('#description').val(this.product.description)
     }
 }
 
@@ -155,6 +170,13 @@ function logout(e) {
     e.preventDefault()
     myStorage.removeItem('jwt')
     window.location.href = '/'
+}
+
+function parseJson(form) {
+    const data = new FormData(form)
+    const object = {}
+    data.forEach((value, key) => object[key] = value)
+    return JSON.stringify(object)
 }
 
 $(() => {
@@ -288,6 +310,7 @@ function addProduct() {
             processData: false,
             contentType: false,
             success: data => {
+                console.log(data);
                 if (!data.error) {
                     $('#success').removeClass('d-none')
                     form.reset()
@@ -301,9 +324,29 @@ function addProduct() {
 }
 
 function editProduct() {
+    const id = location.pathname.split('/')[location.pathname.split('/').length - 1]
+
     const category = new Category()
     category.getCategories()
 
     const product = new Product()
-    product.getProduct()
+    product.getProduct(id)
+
+    $('form').submit(e => {
+        e.preventDefault()
+
+        const form = e.target
+        const json = parseJson(form)
+        const jwt = isLogged()
+
+        $.ajax({
+            url: `${host}/products/${id}`,
+            type: 'PUT',
+            headers: { jwt },
+            data: json,
+            success: data => {
+                console.log(data);
+            }
+        })
+    })
 }

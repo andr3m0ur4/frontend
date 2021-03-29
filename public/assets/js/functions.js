@@ -1,5 +1,6 @@
 //const host = 'http://10.0.0.104:8080'
 const host = 'http://localhost:8080'
+const numberFormat = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
 const myStorage = localStorage
 
 if (!myStorage.getItem('gwt')) {
@@ -29,6 +30,17 @@ class Store {
             }
         })
     }
+
+    getTotal() {
+        $.ajax({
+            url: `${host}/stores/total`,
+            success: data => {
+                if (!data.error) {
+                    $('#stores').html(data.total)
+                }
+            }
+        })
+    }
 }
 
 class Product {
@@ -46,9 +58,22 @@ class Product {
                 return data
             }
         }).then(data => data.data.forEach(product => {
-            console.log(product);
             const tr = new TableRow(product)
             $('tbody').append(tr.fillTr())
+        }))
+    }
+
+    getLatestProducts() {
+        $.ajax({
+            url: `${host}/products/latest-products`,
+            success: data => {
+                if (!data.error) {
+                    return data
+                }
+            }
+        }).then(products => products.data.forEach(product => {
+            const tr = new TableRow(product)
+            $('tbody').append(tr.fillTr2())
         }))
     }
 
@@ -64,6 +89,17 @@ class Product {
         }).then(data => {
             const form = new Form(data.data)
             form.fillField()
+        })
+    }
+
+    getTotal() {
+        $.ajax({
+            url: `${host}/products/total`,
+            success: data => {
+                if (!data.error) {
+                    $('#products').html(data.total)
+                }
+            }
         })
     }
 }
@@ -133,6 +169,20 @@ class TableRow {
         return img
     }
 
+    createLink() {
+        const a  = $('<a>')
+        $(a).attr('href', `/products/view/${this.id}`)
+        $(a).html(this.name)
+        return a
+    }
+
+    createSpan() {
+        const span = $('<span>')
+        $(span).addClass('d-block')
+        $(span).html(this.id_category)
+        return span
+    }
+
     edit() {
         const a = $('<a>')
         $(a).attr('href', `/anuncios/editar/${this.id}`)
@@ -153,8 +203,16 @@ class TableRow {
         const tr = $('<tr>')
         $(tr).append($('<td>').append(this.createImg(this.picture)))
         $(tr).append($('<td>').html(this.name))
-        $(tr).append($('<td>').html(`R$ ${this.price}`))
+        $(tr).append($('<td>').html(numberFormat.format(this.price)))
         $(tr).append($('<td>').append(this.edit(), this.delete()))
+        return tr
+    }
+
+    fillTr2() {
+        const tr = $('<tr>')
+        $(tr).append($('<td>').append(this.createImg(this.picture)))
+        $(tr).append($('<td>').append(this.createLink(), this.createSpan()))
+        $(tr).append($('<td>').html(numberFormat.format(this.price)))
         return tr
     }
 }
@@ -215,7 +273,16 @@ $(() => {
 })
 
 function home() {
+    const product = new Product()
+    product.getTotal()
 
+    const store = new Store()
+    store.getTotal()
+
+    const category = new Category()
+    category.getCategories();
+
+    product.getLatestProducts()
 }
 
 function register() {

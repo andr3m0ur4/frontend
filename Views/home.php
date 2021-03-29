@@ -1,7 +1,7 @@
 <header class="container-fluid">
     <div class="jumbotron">
-        <h1>Nós temos <?= $total_anuncios ?> anúncios hoje.</h1>
-        <p>E mais de <?= $total_usuarios ?> usuários cadastrados.</p>
+        <h1>Nós temos <span id="products"></span> anúncios hoje.</h1>
+        <p>E mais de <span id="stores"></span> lojas cadastradas.</p>
     </div>
 </header>
 
@@ -12,12 +12,9 @@
 
             <form method="get">
                 <div class="form-group">
-                    <label for="categoria">Categoria:</label>
-                    <select name="filtros[categoria]" id="categoria" class="form-control">
+                    <label for="category">Categoria:</label>
+                    <select name="filtros[categoria]" id="category" class="form-control">
                         <option></option>
-                        <?php foreach ($categorias as $categoria) : ?>
-                            <option value="<?= $categoria->id ?>" <?= $categoria->id == $filtros['categoria'] ? 'selected' : '' ?>><?= $categoria->nome ?></option>
-                        <?php endforeach ?>
                     </select>
                 </div>
 
@@ -51,24 +48,7 @@
             <h4>Últimos Anúncios</h4>
 
             <table class="table table-striped">
-                <tbody>
-                    <?php foreach ($anuncios as $anuncio) : ?>
-                        <tr>
-                            <td>
-                                <?php if (!empty($anuncio->url)) : ?>
-                                    <img src="/assets/images/anuncios/<?= $anuncio->url ?>" height="75" alt="Foto Anúncio">
-                                <?php else : ?>
-                                    <img src="/assets/images/default.jpg" height="75" alt="Foto Anúncio">
-                                <?php endif ?>
-                            </td>
-                            <td>
-                                <a href="/produto/abrir/<?= $anuncio->id ?>"><?= $anuncio->titulo?></a>
-                                <span class="d-block"><?= $anuncio->categoria ?></span>
-                            </td>
-                            <td>R$ <?= number_format($anuncio->valor, 2) ?></td>
-                        </tr>
-                    <?php endforeach ?>
-                </tbody>
+                <tbody></tbody>
             </table>
 
             <ul class="pagination justify-content-center">

@@ -1,7 +1,7 @@
 <main class="container my-4">
     <h1>Meus Anúncios - Editar Anúncio</h1>
 
-    <div class="alert alert-success d-none">
+    <div class="alert alert-success d-none" id="success">
         Produto editado com sucesso!
     </div>
 

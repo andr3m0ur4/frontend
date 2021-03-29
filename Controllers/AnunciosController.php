@@ -24,21 +24,6 @@
 
         public function editar($id)
         {
-            if (isset($_POST['titulo']) && !empty($_POST['titulo'])) {
-                $titulo = addslashes($_POST['titulo']);
-                $categoria = addslashes($_POST['categoria']);
-                $valor = addslashes($_POST['valor']);
-                $descricao = addslashes($_POST['descricao']);
-                $estado = addslashes($_POST['estado']);
-                $fotos = [];
-        
-                if (isset($_FILES['fotos'])) {
-                    $fotos = $_FILES['fotos'];
-                }
-        
-                $anuncio->editarAnuncio($titulo, $categoria, $valor, $descricao, $estado, $fotos, $id);
-                $sucesso = true;
-            }
             $this->loadTemplate('editar');
         }
 

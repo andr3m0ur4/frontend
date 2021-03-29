@@ -136,7 +136,7 @@ class TableRow {
     edit() {
         const a = $('<a>')
         $(a).attr('href', `/anuncios/editar/${this.id}`)
-        $(a).addClass('btn btn-primary')
+        $(a).addClass('btn btn-primary mr-2')
         $(a).html('Editar')
         return a
     }
@@ -266,14 +266,12 @@ function login() {
         e.preventDefault()
 
         const form = e.target
-        const data = new FormData(form)
+        const json = parseJson(form)
 
         $.ajax({
             url: `${host}/stores/login`,
             type: 'POST',
-            data,
-            processData: false,
-            contentType: false,
+            data: json,
             success: data => {
                 if (!data.error) {
                     myStorage.setItem('jwt', data.jwt)
@@ -299,16 +297,14 @@ function addProduct() {
         e.preventDefault()
 
         const form = e.target
-        const data = new FormData(form)
+        const json = parseJson(form)
         const jwt = isLogged()
         
         $.ajax({
             url: `${host}/products/new`,
             type: 'POST',
-            data,
+            data: json,
             headers: { jwt },
-            processData: false,
-            contentType: false,
             success: data => {
                 console.log(data);
                 if (!data.error) {
@@ -345,7 +341,10 @@ function editProduct() {
             headers: { jwt },
             data: json,
             success: data => {
-                console.log(data);
+                if (data.error) {
+                    $('#success').removeClass('d-none')
+                    $(window).scrollTop(0)
+                }
             }
         })
     })

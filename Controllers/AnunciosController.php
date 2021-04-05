@@ -21,24 +21,13 @@
             $this->loadTemplate('adicionar');
         }
 
-        public function editar($id)
+        public function editar()
         {
             $this->loadTemplate('editar');
         }
 
-        public function excluir($id)
+        public function excluir()
         {
-            if (empty($_SESSION['login'])) {
-                header('Location: /login');
-                exit;
-            }
-        
-            $anuncio = new Anuncio;
-        
-            if (!empty($id)) {
-                $anuncio->excluirAnuncio($id);
-            }
-        
             header('Location: /anuncios');
         }
 

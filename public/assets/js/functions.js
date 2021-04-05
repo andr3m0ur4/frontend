@@ -101,6 +101,21 @@ class Product {
             }
         })
     }
+
+    delete(id) {
+        $.ajax({
+            url: `${host}/products/${id}`,
+            type: 'DELETE',
+            headers: {
+                jwt: this.jwt
+            },
+            success: data => {
+                if (!data.error) {
+                    location.href = location.href
+                }
+            }
+        })
+    }
 }
 
 class Category {
@@ -191,11 +206,18 @@ class TableRow {
     }
 
     delete() {
-        const a = $('<a>')
-        $(a).attr('href', `/anuncios/excluir/${this.id}`)
-        $(a).addClass('btn btn-danger')
-        $(a).html('Excluir')
-        return a
+        const button = $('<button>')
+        $(button).addClass('btn btn-danger')
+        $(button).click(() => {
+            $('.modal-footer button').eq(1).click(() => {
+                const product = new Product()
+                product.delete(this.id)
+            })
+            $('#product').html(this.name)
+            $('#modal').modal('show')
+        })
+        $(button).html('Excluir')
+        return button
     }
 
     fillTr() {

@@ -4,7 +4,7 @@
     $routes = [
         '/galeria/{id}' => '/galeria/abrir/:id',
         //'/galeria/{id}/{titulo}' => '/galeria/abrir/:id/:titulo',
-        '/news/{id}' => '/noticia/abrir/:id',
+        '/produto/{id}' => '/produto/index/:id',
         '/home' => '/home/index',
         //'/{titulo}' => '/noticia/abrirTitulo/:titulo'
     ];

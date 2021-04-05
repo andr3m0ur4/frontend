@@ -77,18 +77,17 @@ class Product {
         }))
     }
 
-    getProduct(id) {
+    getProduct(id, callback) {
         $.ajax({
-            url: `${host}/products/${id}`,
+            url: `${host}/products/get/${id}`,
             headers: {
                 jwt: this.jwt
             },
             success: data => {
-                return data
+                if (!data.error) {
+                    callback(data.data)
+                }
             }
-        }).then(data => {
-            const form = new Form(data.data)
-            form.fillField()
         })
     }
 
@@ -171,7 +170,7 @@ class TableRow {
 
     createLink() {
         const a  = $('<a>')
-        $(a).attr('href', `/products/view/${this.id}`)
+        $(a).attr('href', `/produto/${this.id}`)
         $(a).html(this.name)
         return a
     }
@@ -268,6 +267,9 @@ $(() => {
 
     if (window.location.pathname.slice(0, 16) == '/anuncios/editar') {
         editProduct()
+    }
+    if (window.location.pathname.slice(0, 8) == '/produto') {
+        viewProduct()
     }
     
 })
@@ -386,6 +388,21 @@ function addProduct() {
     })
 }
 
+function viewProduct() {
+    const id = location.pathname.split('/')[location.pathname.split('/').length - 1]
+
+    const product = new Product()
+    product.getProduct(id, data => {
+        $('#name').html(data.name)
+        $('#category').html(data.category)
+        $('#description').html(data.description)
+        $('#price').html(numberFormat.format(data.price))
+        $('#company').html(data.fantasy_name)
+        $('#phone').html(data.phone)
+        $('#cell_phone').html(data.cell_phone)
+    })
+}
+
 function editProduct() {
     const id = location.pathname.split('/')[location.pathname.split('/').length - 1]
 
@@ -393,7 +410,10 @@ function editProduct() {
     category.getCategories()
 
     const product = new Product()
-    product.getProduct(id)
+    product.getProduct(id, data => {
+        const form = new Form(data)
+        form.fillField()
+    })
 
     $('form').submit(e => {
         e.preventDefault()

@@ -4,16 +4,12 @@
 
     use Core\Controller;
     use Models\Anuncio;
-    use Models\Categoria;
-    use Models\Usuario;
 
-    class homeController extends Controller
+    class HomeController extends Controller
     {
         public function index()
         {
             $anuncio = new Anuncio;
-            $usuario = new Usuario;
-            $categoria = new Categoria;
 
             $filtros = [
                 'categoria' => '',
@@ -26,7 +22,6 @@
             }
 
             $total_anuncios = $anuncio->obterTotalAnuncios($filtros);
-            $total_usuarios = $usuario->obterTotalUsuarios();
 
             $pagina = 1;
 
@@ -38,12 +33,8 @@
 
             $anuncios = $anuncio->obterUltimosAnuncios($pagina, $qtd_itens, $filtros);
 
-            $categorias = $categoria->obterLista();
-
             $dados = [
                 'total_anuncios' => $total_anuncios,
-                'total_usuarios' => $total_usuarios,
-                'categorias' => $categorias,
                 'filtros' => $filtros,
                 'anuncios' => $anuncios,
                 'total_paginas' => $total_paginas

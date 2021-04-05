@@ -4,7 +4,6 @@
 
     use Core\Controller;
     use Models\Anuncio;
-    use Models\Categoria;
 
     class anunciosController extends Controller
     {

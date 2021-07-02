@@ -47,7 +47,7 @@
                 $descricao = addslashes($_POST['descricao']);
                 $estado = addslashes($_POST['estado']);
                 $fotos = [];
-        
+
                 if (isset($_FILES['fotos'])) {
                     $fotos = $_FILES['fotos'];
                 }

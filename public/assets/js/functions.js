@@ -1,5 +1,5 @@
-//const host = 'http://10.0.0.104:8080'
-const host = 'http://localhost:8080'
+const host = 'http://marketplace.com'
+//const host = 'http://localhost:8080'
 const myStorage = localStorage
 
 class Store {
@@ -188,3 +188,26 @@ function addProduct() {
         })
     })
 }
+
+
+
+/*
+Arquitetura:
+    MVC 
+        model       (satitiza/modela dados)
+        view        (paresebta dados)
+        controller  (controla dados)
+    MVVM
+        Model-view (model recebe dados, trata , e manda para a view)
+        View-model (view manda dados para a model para a model tratar e mandar par  back end)
+    MVVW
+        model-View
+        view-wharever (wharever: qualquer coisa)
+            Resouses (transformacao de dados - )
+            Services (consumo de servicos - )
+            controler (controla o fluxo de dados entre view e model)
+
+
+    
+
+*/

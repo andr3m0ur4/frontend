@@ -1,0 +1,1 @@
+const headerModule = angular.module('headerModule', [])

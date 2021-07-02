@@ -1,3 +1,3 @@
-app.controller('marketPlaceCtrl', function($scope) {
-    
+app.controller('marketPlaceCtrl', function($scope, totalProducts) {
+    $scope.totalProducts = totalProducts.data.total
 })

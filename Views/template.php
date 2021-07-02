@@ -21,7 +21,7 @@
                 <ul class="nav navbar-nav ml-auto">
                     <li class="navbar-text d-none">(  )</li>
                     <li class="nav-item d-none"><a class="nav-link" href="/anuncios">Meus Anúncios</a></li>
-                    <li class="nav-item d-none"><a class="nav-link" href="/login/sair">Sair</a></li>
+                    <li class="nav-item d-none"><a class="nav-link" id="logout" href="/sair">Sair</a></li>
                     <li class="nav-item"><a class="nav-link" href="/cadastrar">Cadastre-se</a></li>
                     <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
                 </ul>

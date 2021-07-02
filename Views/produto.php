@@ -1,3 +1,8 @@
+<?php
+$dado = new stdClass();
+$dado->fotos = null;
+?>
+
 <main class="container-fluid mt-4">
     <div class="row">
         <div class="col-sm-5">
@@ -26,11 +31,13 @@
 
         </div>
         <div class="col-sm-7">
-            <h1><?= $dado->titulo ?></h1>
-            <h4><?= $dado->categoria ?></h4>
-            <p><?= $dado->descricao ?></p>
-            <h3 class="mt-5">R$ <?= number_format($dado->valor, 2) ?></h3>
-            <h4>Telefone: <?= $dado->telefone ?></h4>
+            <h1 id="name"></h1>
+            <h4 id="category"></h4>
+            <p id="description"></p>
+            <h3 class="mt-5" id="price"></h3>
+            <h4 id="company"></h4>
+            <h4>Telefone: <span id="phone"></span></h4>
+            <h4>Celular: <span id="cell_phone"></span></h4>
         </div>
     </div>
 </main>

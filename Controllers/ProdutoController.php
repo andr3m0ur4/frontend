@@ -3,32 +3,11 @@
     namespace Controllers;
 
     use Core\Controller;
-    use Models\Anuncio;
-    use Models\Usuario;
 
-    class produtoController extends Controller
+    class ProdutoController extends Controller
     {
-        public function index()
+        public function index($id)
         {
-
-        }
-
-        public function abrir($id)
-        {
-            $anuncio = new Anuncio;
-            $usuario = new Usuario;
-
-            if (empty($id)) {
-                header('Location: /');
-                exit;
-            }
-
-            $dado = $anuncio->obterAnuncio($id);
-
-            $dados = [
-                'dado' => $dado
-            ];
-
-            $this->loadTemplate('produto', $dados);
+            $this->loadTemplate('produto');
         }
     }

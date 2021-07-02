@@ -1,43 +1,33 @@
 <main class="container my-4">
     <h1>Meus Anúncios - Editar Anúncio</h1>
 
-    <?php if ($sucesso) : ?>
-        <div class="alert alert-success">
-            Produto editado com sucesso!
-        </div>
-    <?php endif ?>
+    <div class="alert alert-success d-none" id="success">
+        Produto editado com sucesso!
+    </div>
 
     <form method="POST" enctype="multipart/form-data">
 
         <div class="form-group">
-            <label for="categoria">Categoria:</label>
-            <select name="categoria" id="categoria" class="form-control">
-                <?php foreach ($categorias as $categoria) : ?>
-                    <option value="<?= $categoria->id ?>" <?= $dado->id_categoria == $categoria->id ? 'selected' : '' ?>>
-                        <?= $categoria->nome ?>
-                    </option>
-                <?php endforeach ?>
-            </select>
+            <label for="category">Categoria:</label>
+            <select name="id_category" id="category" class="form-control"></select>
         </div>
         <div class="form-group">
-            <label for="titulo">Título:</label>
-            <input type="text" name="titulo" id="titulo" class="form-control" value="<?= $dado->titulo ?>">
+            <label for="name">Título:</label>
+            <input type="text" name="name" id="name" class="form-control" required>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="price">Valor:</label>
+                <input type="text" name="price" id="price" class="form-control" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="availability">Quantidade em estoque:</label>
+                <input type="number" name="availability" id="availability" class="form-control" required>
+            </div>
         </div>
         <div class="form-group">
-            <label for="valor">Valor:</label>
-            <input type="text" name="valor" id="valor" class="form-control" value="<?= $dado->valor ?>">
-        </div>
-        <div class="form-group">
-            <label for="descricao">Descrição:</label>
-            <textarea name="descricao" id="descricao" class="form-control"><?= $dado->descricao ?></textarea>
-        </div>
-        <div class="form-group">
-            <label for="estado">Estado de Conservação:</label>
-            <select name="estado" id="estado" class="form-control">
-                <option value="0" <?= $dado->estado == 0 ? 'selected' : '' ?>>Ruim</option>
-                <option value="1" <?= $dado->estado == 1 ? 'selected' : '' ?>>Bom</option>
-                <option value="2" <?= $dado->estado == 2 ? 'selected' : '' ?>>Ótimo</option>
-            </select>
+            <label for="description">Descrição:</label>
+            <textarea name="description" id="description" class="form-control"></textarea>
         </div>
         <div class="form-group">
             <label for="fotos">Fotos do anúncio:</label>
@@ -46,12 +36,10 @@
             <div class="card mt-4">
                 <div class="card-header">Fotos do Anúncio</div>
                 <div class="card-body d-flex">
-                    <?php foreach ($dado->fotos as $foto) : ?>
-                        <div class="foto-item mr-2 text-center">
-                            <img src="/assets/images/anuncios/<?= $foto->url ?>" alt="Foto Anúncio" class="img-fluid img-thumbnail">
-                            <a href="/anuncios/excluir-foto/<?= $foto->id ?>" class="btn btn-danger mt-1">Excluir Imagem</a>
-                        </div>
-                    <?php endforeach ?>
+                    <div class="foto-item mr-2 text-center">
+                        <img src="/assets/images/anuncios/" alt="Foto Anúncio" class="img-fluid img-thumbnail">
+                        <a href="/anuncios/excluir-foto/" class="btn btn-danger mt-1">Excluir Imagem</a>
+                    </div>
                 </div>
             </div>
         </div>

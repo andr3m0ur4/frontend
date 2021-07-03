@@ -1,0 +1,51 @@
+{
+  "_from": "angular-locale-pt-br",
+  "_id": "angular-locale-pt-br@1.3.16",
+  "_inBundle": false,
+  "_integrity": "sha512-UIlnWcZUA79sX92IcyGKpcD4CB38G9XFgAqXngqEKaKTCBcH8rO59iv5Fa53nPYczJcR9fJTLCHEOnV+cYX5BA==",
+  "_location": "/angular-locale-pt-br",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "angular-locale-pt-br",
+    "name": "angular-locale-pt-br",
+    "escapedName": "angular-locale-pt-br",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/angular-locale-pt-br/-/angular-locale-pt-br-1.3.16.tgz",
+  "_shasum": "9c4b43571832f6e1d23b075cb60ca2af295c1fb5",
+  "_spec": "angular-locale-pt-br",
+  "_where": "C:\\Users\\moura\\OneDrive\\Documentos\\PHP\\frontend",
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/pedroslima/angular-locale-pt-br/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "```shell\r bower install angular-locale-pt-br\r ```",
+  "homepage": "https://github.com/pedroslima/angular-locale-pt-br#readme",
+  "keywords": [
+    "Angular",
+    "locale",
+    "pt-br",
+    "pt_BR"
+  ],
+  "license": "ISC",
+  "main": "angular-locale_pt-br.js",
+  "name": "angular-locale-pt-br",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedroslima/angular-locale-pt-br.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.3.16"
+}

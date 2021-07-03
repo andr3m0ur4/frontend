@@ -1,7 +1,9 @@
 app.factory('productsAPI', ($http, config) => {
-    const _getTotal = () => $http.get(`${config.baseURL}/products/total`)
+    const getTotal = () => $http.get(`${config.baseURL}/products/total`)
+    const latestProducts = () => $http.get(`${config.baseURL}/products/latest-products`)
 
     return {
-        getTotal: _getTotal
+        getTotal,
+        latestProducts
     }
 })

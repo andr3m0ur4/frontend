@@ -62,22 +62,6 @@
                         </td>
                         <td>{{ product.price | currency }}</td>
                     </tr>
-                    <!-- <?php foreach ($anuncios as $anuncio) : ?>
-                        <tr>
-                            <td>
-                                <?php if (!empty($anuncio->url)) : ?>
-                                    <img src="/assets/images/anuncios/<?= $anuncio->url ?>" height="75" alt="Foto Anúncio">
-                                <?php else : ?>
-                                    <img src="/assets/images/default.jpg" height="75" alt="Foto Anúncio">
-                                <?php endif ?>
-                            </td>
-                            <td>
-                                <a href="/produto/abrir/<?= $anuncio->id ?>"><?= $anuncio->titulo?></a>
-                                <span class="d-block"><?= $anuncio->categoria ?></span>
-                            </td>
-                            <td>R$ <?= number_format($anuncio->valor, 2) ?></td>
-                        </tr>
-                    <?php endforeach ?> -->
                 </tbody>
             </table>
 

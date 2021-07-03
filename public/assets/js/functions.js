@@ -311,7 +311,7 @@ function home() {
 }
 
 function register() {
-    $('form[name=register]').submit(e => {
+    /* $('form[name=register]').submit(e => {
         e.preventDefault()
         
         const form = e.target
@@ -350,7 +350,7 @@ function register() {
                 }
             }
         })
-    })
+    }) */
 }
 
 function login() {

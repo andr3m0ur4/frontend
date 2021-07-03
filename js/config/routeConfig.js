@@ -11,4 +11,8 @@ app.config(($routeProvider, $locationProvider) => {
             products: productsAPI=> productsAPI.latestProducts()
         }
     })
+    $routeProvider.when('/signup', {
+        templateUrl: 'view/signup.html',
+        controller: 'signupCtrl'
+    })
 })

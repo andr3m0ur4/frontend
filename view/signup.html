@@ -1,0 +1,89 @@
+<main class="container my-4">
+    <h1>Cadastre-se</h1>
+
+    <form name="register" method="POST">
+        <div class="form-group">
+            <label for="fantasy_name">Nome Fantasia:</label>
+            <input type="text" ng-model="store.fantasy_name" name="fantasy_name" ng-required="true" ng-minlength="10" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="cnpj">CNPJ:</label>
+            <input type="text" ng-model="store.cnpj" name="cnpj" class="form-control" ng-required="true" ng-minlength="14" ui-mask="99.999.999/9999-99" ng-pattern="/^\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}$/">
+        </div>
+        <div class="form-group">
+            <label for="company_name">Nome da Empresa:</label>
+            <input type="text" ng-model="store.company_name" name="company_name" class="form-control" ng-required="true" ng-minlegth="10">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="phone">Telefone:</label>
+                <input type="tel" ng-model="store.phone" name="phone" class="form-control" ui-mask="(99) 9999-9999">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="cell_phone">Celular:</label>
+                <input type="text" ng-model="store.cell_phone" name="cell_phone" class="form-control" ng-required="true" ui-mask="(99) 99999-9999">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="responsible_contact">Nome do Responsável para Contato:</label>
+                <input type="text" ng-model="store.responsible_contact" name="responsible_contact" class="form-control" ng-required="true" ng-minlength="3">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-10">
+                <label for="public_place">Logradouro:</label>
+                <input type="text" ng-model="address.public_place" name="public_place" class="form-control" ng-required="true" ng-minlength="10">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="number">Número:</label>
+                <input type="text" ng-model="address.number" name="number" class="form-control">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="neighborhood">Bairro:</label>
+                <input type="text" ng-model="address.neighborhood" name="neighborhood" class="form-control" ng-required="true" ng-minlength="10">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="complement">Complemento:</label>
+                <input type="text" ng-model="address.complement" name="complement" class="form-control">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="city">Cidade:</label>
+                <input type="text" ng-model="address.city" name="city" class="form-control" ng-required="true" ng-minlength="5">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="uf">Estado:</label>
+                <input type="text" ng-model="address.uf" name="uf" class="form-control" ng-required="true" ng-minlength="2" ng-maxlength="2">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="zip_code">CEP:</label>
+                <input type="text" ng-model="address.zip_code" name="zip_code" class="form-control" ui-mask="99.999-999" ng-required="true">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-7">
+                <label for="email">E-mail:</label>
+                <input type="email" ng-model="store.email" name="email" class="form-control" ng-required="true" ng-minlength="10">
+            </div>
+            <div class="form-group col-md-5">
+                <label for="password">Senha:</label>
+                <input type="password" ng-model="store.password" name="password" class="form-control" ng-required="true" ng-minlength="6">
+            </div>
+        </div>
+        <button class="btn btn-outline-dark" ng-click="registerStore(store, address)" ng-disabled="register.$invalid">Cadastrar</button>
+
+        <div class="alert alert-success text-center mt-4" ng-show="success">
+            <strong>Parabéns!</strong> Cadastrado com sucesso.
+            <a href="#/signin" class="alert-link">Faça o login agora</a>
+        </div>
+
+        <div class="alert alert-warning text-center mt-4" ng-show="error_email">
+            E-mail já existente!
+            <a href="#/signin" class="alert-link">Faça o login agora</a>
+        </div>
+
+        <div class="alert alert-danger text-center mt-4" ng-show="error">{{ error_message }}</div>
+    </form>
+</main>

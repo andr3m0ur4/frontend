@@ -8,11 +8,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav ml-auto">
-                <li class="navbar-text d-none">(  )</li>
-                <li class="nav-item d-none"><a class="nav-link" href="/anuncios">Meus Anúncios</a></li>
-                <li class="nav-item d-none"><a class="nav-link" href="/login/sair">Sair</a></li>
-                <li class="nav-item"><a class="nav-link" href="#/signup">Cadastre-se</a></li>
-                <li class="nav-item"><a class="nav-link" href="#/signin">Login</a></li>
+                <li ng-if="isLogged()" class="navbar-text">( {{ company_name }} )</li>
+                <li ng-if="isLogged()" class="nav-item"><a class="nav-link" href="/anuncios">Meus Anúncios</a></li>
+                <li ng-if="isLogged()" class="nav-item"><a class="nav-link" ng-click="logout()" href="/">Sair</a></li>
+                <li ng-if="!isLogged()" class="nav-item"><a class="nav-link" href="#/signup">Cadastre-se</a></li>
+                <li ng-if="!isLogged()" class="nav-item"><a class="nav-link" href="#/signin">Login</a></li>
             </ul>
         </div>
     </div>

@@ -1,6 +1,12 @@
 app.config(($routeProvider, $locationProvider) => {
     $locationProvider.hashPrefix('')
 
+    const config = {
+        headers: {
+            jwt: localStorage.getItem('jwt')
+        }
+    }
+
     $routeProvider.when('/', {
         templateUrl: 'view/home.html',
         controller: 'marketPlaceCtrl',
@@ -18,5 +24,12 @@ app.config(($routeProvider, $locationProvider) => {
     $routeProvider.when('/signin', {
         templateUrl: 'view/signin.html',
         controller: 'signinCtrl'
+    })
+    $routeProvider.when('/my-products', {
+        templateUrl: 'view/my-products.html',
+        controller: 'myProductsCtrl',
+        resolve: {
+            myProducts: productsAPI => productsAPI.myProducts(config)
+        }
     })
 })

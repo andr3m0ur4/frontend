@@ -9,7 +9,7 @@
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav ml-auto">
                 <li ng-if="isLogged()" class="navbar-text">( {{ company_name }} )</li>
-                <li ng-if="isLogged()" class="nav-item"><a class="nav-link" href="/anuncios">Meus Anúncios</a></li>
+                <li ng-if="isLogged()" class="nav-item"><a class="nav-link" href="#/my-products">Meus Anúncios</a></li>
                 <li ng-if="isLogged()" class="nav-item"><a class="nav-link" ng-click="logout()" href="/">Sair</a></li>
                 <li ng-if="!isLogged()" class="nav-item"><a class="nav-link" href="#/signup">Cadastre-se</a></li>
                 <li ng-if="!isLogged()" class="nav-item"><a class="nav-link" href="#/signin">Login</a></li>

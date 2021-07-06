@@ -1,6 +1,5 @@
 headerModule.controller('headerCtrl', function($scope, $location, storesAPI) {
     $scope.isLogged = () => localStorage.getItem('jwt')
-    $scope.company_name = ''
 
     if ($scope.isLogged()) {
         const config = {

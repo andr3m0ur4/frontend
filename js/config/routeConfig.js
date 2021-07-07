@@ -32,4 +32,11 @@ app.config(($routeProvider, $locationProvider) => {
             myProducts: productsAPI => productsAPI.myProducts(config)
         }
     })
+    $routeProvider.when('/products/add', {
+        templateUrl: 'view/add-product.html',
+        controller: 'addProductCtrl',
+        resolve: {
+            categories: categoriesAPI => categoriesAPI.getCategories()
+        }
+    })
 })

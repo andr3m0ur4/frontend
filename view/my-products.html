@@ -24,7 +24,7 @@
                 <td>{{ product.price | currency }}</td>
                 <td>
                     <a href="#/products/update/{{ product.id }}" class="btn btn-primary">Editar</a>
-                    <a href="#/product/delete/{{ product.id }}" class="btn btn-danger">Excluir</a>
+                    <button class="btn btn-danger" ng-click="openModal(product)">Excluir</a>
                 </td>
             </tr>
         </tbody>
@@ -43,11 +43,11 @@
             </div>
             <div class="modal-body">
                 Tem certeza que deseja excluir o produto?<br>
-                <span class="font-weight-bold" id="product"></span>
+                <span class="font-weight-bold">{{ modal.product.name }}</span>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-danger">Excluir</button>
+                <button type="button" class="btn btn-danger" ng-click="delete(modal.product.id)">Excluir</button>
             </div>
         </div>
     </div>

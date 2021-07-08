@@ -1,1 +1,1 @@
-const app = angular.module('marketPlace', ['headerModule', 'ngRoute', 'ui.mask'])
+const app = angular.module('marketPlace', ['headerModule', 'ngRoute', 'ui.mask', 'ui.bootstrap'])

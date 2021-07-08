@@ -15,7 +15,7 @@
         <tbody>
             <tr ng-repeat="product in products">
                 <td ng-if="!isEmpty(product.picture)">
-                    <img ng-src="/images/anuncios/{{ product.picture }}" alt="Foto Anúncio" height="75">
+                    <img ng-src="http://marketplace.com/images/products/{{ product.picture }}" alt="Foto Anúncio" height="75">
                 </td>
                 <td ng-if="isEmpty(product.picture)">
                     <img src="/images/default.jpg" alt="Foto Anúncio" height="75">
@@ -23,7 +23,7 @@
                 <td>{{ product.name }}</td>
                 <td>{{ product.price | currency }}</td>
                 <td>
-                    <a href="#/product/update/{{ product.id }}" class="btn btn-primary">Editar</a>
+                    <a href="#/products/update/{{ product.id }}" class="btn btn-primary">Editar</a>
                     <a href="#/product/delete/{{ product.id }}" class="btn btn-danger">Excluir</a>
                 </td>
             </tr>

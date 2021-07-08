@@ -39,4 +39,12 @@ app.config(($routeProvider, $locationProvider) => {
             categories: categoriesAPI => categoriesAPI.getCategories()
         }
     })
+    $routeProvider.when('/products/update/:id', {
+        templateUrl: 'view/update-product.html',
+        controller: 'updateProductCtrl',
+        resolve: {
+            categories: categoriesAPI => categoriesAPI.getCategories(),
+            product: (productsAPI, $route) => productsAPI.getProduct($route.current.params.id)
+        }
+    })
 })

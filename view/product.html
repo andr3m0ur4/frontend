@@ -1,0 +1,33 @@
+<main class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-sm-5">
+            
+            <div class="carousel slide" data-ride="carousel" id="carousel">
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active" ng-if="!isEmpty(product.picture)">
+                        <img ng-src="http://marketplace.com/images/products/{{ product.picture }}" alt="Foto Anúncio" class="d-block w-100">
+                    </div>
+                    <img src="/images/default.jpg" alt="Foto Default" class="d-block w-100" ng-if="isEmpty(product.picture)">
+                </div>
+                <a href="#/product/{{ product.id }}/#carousel" class="carousel-control-prev" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Anterior</span>
+                </a>
+                <a href="#/product/{{ product.id }}/#carousel" class="carousel-control-next" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Próximo</span>
+                </a>
+            </div>
+
+        </div>
+        <div class="col-sm-7">
+            <h1>{{ product.name }}</h1>
+            <h4>{{ product.category }}</h4>
+            <p>{{ product.description }}</p>
+            <h3 class="mt-5">{{ product.price | currency }}</h3>
+            <h4>{{ product.fantasy_name }}</h4>
+            <h4>Telefone: {{ product.phone }}</h4>
+            <h4>Celular: {{ product.cell_phone }}</h4>
+        </div>
+    </div>
+</main>

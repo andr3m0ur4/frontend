@@ -1,4 +1,4 @@
-app.controller('updateProductCtrl', function($scope, product, categories, productsAPI) {
+app.controller('updateProductCtrl', function($scope, $location, product, categories, productsAPI) {
     if (!localStorage.getItem('jwt')) $location.path('/')
 
     const config = {
@@ -19,6 +19,7 @@ app.controller('updateProductCtrl', function($scope, product, categories, produc
 
     $scope.update = product => {
         $scope.success = false
+        product.id_category = $scope.selectedCategory.id
         const formData = new FormData()
         const fileObject = document.getElementById('photos').files[0]
 
@@ -35,6 +36,15 @@ app.controller('updateProductCtrl', function($scope, product, categories, produc
         } else {
             update(product)
         }
+    }
+
+    $scope.deletePhoto = id => {
+        productsAPI.deletePhoto(id, config)
+            .then(data => {
+                if (!data.data.error && data.data.logged && data.data.thats_me) {
+                    $scope.product.picture = ''
+                }
+            })
     }
 
     function update(product) {

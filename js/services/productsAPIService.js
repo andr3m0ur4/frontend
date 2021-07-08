@@ -6,6 +6,7 @@ app.factory('productsAPI', ($http, config, httpPostFactory) => {
     const addProduct = (data, configData) => $http.post(`${config.baseURL}/products/new`, data, configData)
     const updatePhoto = (data, callback) => httpPostFactory(`${config.baseURL}/products/update-image`, data, callback)
     const updateProduct = (data, configData) => $http.put(`${config.baseURL}/products/${data.id}`, data, configData)
+    const deletePhoto = (id, configData) => $http.delete(`${config.baseURL}/products/delete-image/${id}`, configData)
 
     return {
         getTotal,
@@ -14,6 +15,7 @@ app.factory('productsAPI', ($http, config, httpPostFactory) => {
         getProduct,
         addProduct,
         updatePhoto,
-        updateProduct
+        updateProduct,
+        deletePhoto
     }
 })

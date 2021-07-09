@@ -5,7 +5,7 @@
             <div class="carousel slide" data-ride="carousel" id="carousel">
                 <div class="carousel-inner" role="listbox">
                     <div class="carousel-item active" ng-if="!isEmpty(product.picture)">
-                        <img ng-src="http://marketplace.com/images/products/{{ product.picture }}" alt="Foto Anúncio" class="d-block w-100">
+                        <img ng-src="{{ url }}/images/products/{{ product.picture }}" alt="Foto Anúncio" class="d-block w-100">
                     </div>
                     <img src="/images/default.jpg" alt="Foto Default" class="d-block w-100" ng-if="isEmpty(product.picture)">
                 </div>

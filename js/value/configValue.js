@@ -1,3 +1,3 @@
-app.constant('config', {
+app.constant('configValue', {
     baseURL: 'http://marketplace.com'
 })

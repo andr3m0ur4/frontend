@@ -35,7 +35,7 @@
                 <div class="card-header">Fotos do Anúncio</div>
                 <div class="card-body d-flex">
                     <div class="foto-item mr-2 text-center" ng-if="product.picture">
-                        <img ng-src="http://marketplace.com/images/products/{{ product.picture }}" alt="Foto Anúncio" class="img-fluid img-thumbnail">
+                        <img ng-src="{{ url }}/images/products/{{ product.picture }}" alt="Foto Anúncio" class="img-fluid img-thumbnail">
                         <a href="#/products/update/{{ product.id }}" class="btn btn-danger mt-1" ng-click="deletePhoto(product.id)">Excluir Imagem</a>
                     </div>
                 </div>

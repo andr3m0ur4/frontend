@@ -1,4 +1,4 @@
-app.controller('myProductsCtrl', function($scope, $route, $document, myProducts, productsAPI) {
+app.controller('myProductsCtrl', function($scope, $route, $document, myProducts, productsAPI, configValue) {
     if (!localStorage.getItem('jwt')) $location.path('/')
 
     const config = {
@@ -9,6 +9,7 @@ app.controller('myProductsCtrl', function($scope, $route, $document, myProducts,
 
     $scope.isEmpty = picture => picture ? false : true
     $scope.modal = {}
+    $scope.url = configValue.baseURL
     
     if (!myProducts.data.error && myProducts.data.logged) {
         $scope.products = myProducts.data.data

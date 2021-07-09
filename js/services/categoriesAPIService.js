@@ -1,5 +1,5 @@
-app.factory('categoriesAPI', ($http, config) => {
-    const getCategories = () => $http.get(`${config.baseURL}/categories`)
+app.factory('categoriesAPI', ($http, configValue) => {
+    const getCategories = () => $http.get(`${configValue.baseURL}/categories`)
 
     return {
         getCategories

@@ -1,4 +1,4 @@
-app.controller('updateProductCtrl', function($scope, $location, $document, product, categories, productsAPI) {
+app.controller('updateProductCtrl', function($scope, $location, $document, product, categories, productsAPI, configValue) {
     if (!localStorage.getItem('jwt')) $location.path('/')
 
     const config = {
@@ -16,6 +16,7 @@ app.controller('updateProductCtrl', function($scope, $location, $document, produ
         name: $scope.product.category
     }
     $scope.success = false
+    $scope.url = configValue.baseURL
 
     $scope.update = product => {
         $scope.success = false

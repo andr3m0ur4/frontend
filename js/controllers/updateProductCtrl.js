@@ -1,4 +1,4 @@
-app.controller('updateProductCtrl', function($scope, $location, product, categories, productsAPI) {
+app.controller('updateProductCtrl', function($scope, $location, $document, product, categories, productsAPI) {
     if (!localStorage.getItem('jwt')) $location.path('/')
 
     const config = {
@@ -21,7 +21,7 @@ app.controller('updateProductCtrl', function($scope, $location, product, categor
         $scope.success = false
         product.id_category = $scope.selectedCategory.id
         const formData = new FormData()
-        const fileObject = document.getElementById('photos').files[0]
+        const fileObject = $document.find('#photos')[0].files[0]
 
         if (fileObject) {
             formData.append('picture', fileObject)
@@ -31,7 +31,7 @@ app.controller('updateProductCtrl', function($scope, $location, product, categor
                     update(product)
                 }
 
-                document.getElementById('photos').value = ''
+                $document.find('#photos')[0].value = ''
             })
         } else {
             update(product)

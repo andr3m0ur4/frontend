@@ -12,30 +12,31 @@
 
             <form method="get">
                 <div class="form-group">
-                    <label for="categoria">Categoria:</label>
-                    <select ng-model="selectedCategory" ng-options="category.name for category in categories" class="form-control">
+                    <label for="category">Categoria:</label>
+                    <select ng-model="selectedCategory" ng-options="category.name for category in categories" id="category" class="form-control">
                         <option value="">-- Escolha uma Categoria --</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="preco">Preço:</label>
-                    <select name="filtros[preco]" id="preco" class="form-control">
-                        <option></option>
-                        <!--<option value="0-50" <?= $filtros['preco'] == '0-50' ? 'selected' : '' ?>>R$ 0 - 50</option>
-                        <option value="51-100" <?= $filtros['preco'] == '51-100' ? 'selected' : '' ?>>R$ 51 - 100</option>
-                        <option value="101-200" <?= $filtros['preco'] == '101-200' ? 'selected' : '' ?>>R$ 101 - 200</option>
-                        <option value="201-500" <?= $filtros['preco'] == '201-500' ? 'selected' : '' ?>>R$ 201 - 500</option>-->
+                    <label for="price">Preço:</label>
+                    <select ng-model="selectedPrice" id="price" class="form-control">
+                        <option value="">-- Escolha um Preço --</option>
+                        <option value="0-50">R$ 0 - 50</option>
+                        <option value="51-500">R$ 51 - 500</option>
+                        <option value="501-2000">R$ 501 - 2000</option>
+                        <option value="2001-5000">R$ 2001 - 5000</option>
+                        <option value="5001-20000">R$ 5001 - 20000</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="estado">Estado de Conservação:</label>
                     <select name="filtros[estado]" id="estado" class="form-control">
-                        <option></option>
-                        <!-- <option value="0" <?= $filtros['estado'] == '0' ? 'selected' : '' ?>>Ruim</option>
-                        <option value="1" <?= $filtros['estado'] == '1' ? 'selected' : '' ?>>Bom</option>
-                        <option value="2" <?= $filtros['estado'] == '2' ? 'selected' : '' ?>>Ótimo</option> -->
+                        <option>-- Escolha o Estado de Conservação --</option>
+                        <option value="0">Ruim</option>
+                        <option value="1">Bom</option>
+                        <option value="2">Ótimo</option>
                     </select>
                 </div>
 
@@ -49,7 +50,7 @@
 
             <table class="table table-striped">
                 <tbody>
-                    <tr ng-repeat="product in products">
+                    <tr ng-repeat="product in products | filter: {category: selectedCategory.name} | priceFilter: selectedPrice">
                         <td ng-if="!isEmpty(product.picture)">
                             <img ng-src="http://marketplace.com/images/products/{{ product.picture }}" alt="Foto Anúncio" height="75">
                         </td>

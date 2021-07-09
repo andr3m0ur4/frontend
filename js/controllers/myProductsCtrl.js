@@ -1,4 +1,4 @@
-app.controller('myProductsCtrl', function($scope, $route, myProducts, productsAPI) {
+app.controller('myProductsCtrl', function($scope, $route, $document, myProducts, productsAPI) {
     if (!localStorage.getItem('jwt')) $location.path('/')
 
     const config = {
@@ -8,7 +8,6 @@ app.controller('myProductsCtrl', function($scope, $route, myProducts, productsAP
     }
 
     $scope.isEmpty = picture => picture ? false : true
-    $scope.$ = $
     $scope.modal = {}
     
     if (!myProducts.data.error && myProducts.data.logged) {
@@ -16,14 +15,14 @@ app.controller('myProductsCtrl', function($scope, $route, myProducts, productsAP
 
         $scope.openModal = product => {
             $scope.modal.product = product
-            $('#modal').modal('show')
+            angular.element($document.find('#modal')).modal('show')
         }
 
         $scope.delete = id => {
             productsAPI.deleteProduct(id, config)
                 .then(data => {
                     if (!data.data.error && data.data.logged && data.data.thats_me) {
-                        $('#modal').modal('hide')
+                        angular.element($document.find('#modal')).modal('hide')
                         $route.reload()
                     }
                 })

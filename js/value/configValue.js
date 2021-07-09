@@ -1,3 +1,3 @@
 app.constant('configValue', {
-    baseURL: 'http://marketplace.com'
+    baseURL: 'http://marketplace-andre.tk'
 })
